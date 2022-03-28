@@ -7,5 +7,11 @@ function convertPrize(){
 
     let paraVenta = Math.round((valorIngresado * 1) / dolarVenta);
 
-    alert("El monto ingresado equivale a $" +  paraCompra + " para la compra, y a $" + paraVenta + " para la venta. Los montos estan redondeados")
+    let regex = /[^A-Za-z]+/;
+
+     if(valorIngresado.search(regex) === -1){
+         alert("Porfavor ingrese únicamente números");
+     } else {
+        alert("El monto ingresado equivale a $" +  paraCompra + " para la compra, y a $" + paraVenta + " para la venta. Los montos estan redondeados")
+     }
 }
