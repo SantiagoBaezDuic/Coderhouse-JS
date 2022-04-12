@@ -253,7 +253,7 @@ const updateWordle = () => {
             if(finalCheck[3] !== null){
                 document.getElementById("44").innerHTML = finalCheck[3].char;
                 if(finalCheck[3].right){
-                    document.getElementById("43").style.color = "rgb(241, 241, 103)";
+                    document.getElementById("44").style.color = "rgb(241, 241, 103)";
                 }
             } else {
                 document.getElementById("44").innerHTML = "_";

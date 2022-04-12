@@ -42,5 +42,6 @@ body{
     display: flex;
     flex-direction: row;
     width: 10%;
+    height: 32px;
     justify-content: space-between;
 }
