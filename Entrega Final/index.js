@@ -328,4 +328,5 @@ const Wordle = () => {
     compareWord();
     updateWordle();
     finalCheck = [];
+    document.getElementById("textInput").value = "";
 }
