@@ -58,7 +58,7 @@ const compareWord = () => {
 
     splitArray.map((char) => {
         if(word.search(char) !== -1){
-            foundInWord.push({char: char, pos: word.search(char)})
+            foundInWord.push({char: char, pos: input.search(char)})
         } else {
             foundInWord.push(null);
         }
@@ -68,10 +68,10 @@ const compareWord = () => {
         if(obj !== null){
             wordArray.map((correctChar) => {
                 if(obj.char === correctChar.char){
-                    if(obj.pos !== correctChar.pos){
-                        finalCheck.push({char: obj.char, pos: obj.pos, right: false})
+                    if(obj.pos === correctChar.pos){
+                        finalCheck.push({char: obj.char, pos: correctChar.pos, state: true})
                     } else {
-                        finalCheck.push({char: obj.char, pos: obj.pos, right: true})
+                        finalCheck.push({char: obj.char, pos: correctChar.pos, state: false})
                     }
                 }
             })
@@ -89,10 +89,11 @@ let currentTry = 0;
 const updateWordle = () => {
     switch(currentTry){
         case 0:
-            console.log(currentTry);
             if(finalCheck[0] !== null){
                 document.getElementById("11").innerHTML = finalCheck[0].char;
-                if(finalCheck[0].right){
+                if(finalCheck[0].state){
+                    document.getElementById("11").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[0].state){
                     document.getElementById("11").style.color = "rgb(241, 241, 103)";
                 }
                 
@@ -101,7 +102,9 @@ const updateWordle = () => {
             }
             if(finalCheck[1] !== null){
                 document.getElementById("12").innerHTML = finalCheck[1].char;
-                if(finalCheck[1].right){
+                if(finalCheck[1].state){
+                    document.getElementById("12").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[1].state){
                     document.getElementById("12").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -109,7 +112,9 @@ const updateWordle = () => {
             }
             if(finalCheck[2] !== null){
                 document.getElementById("13").innerHTML = finalCheck[2].char;
-                if(finalCheck[2].right){
+                if(finalCheck[2].state){
+                    document.getElementById("13").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[2].state){
                     document.getElementById("13").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -117,7 +122,9 @@ const updateWordle = () => {
             }
             if(finalCheck[3] !== null){
                 document.getElementById("14").innerHTML = finalCheck[3].char;
-                if(finalCheck[3].right){
+                if(finalCheck[3].state){
+                    document.getElementById("14").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[3].state){
                     document.getElementById("14").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -125,7 +132,9 @@ const updateWordle = () => {
             }
             if(finalCheck[4] !== null){
                 document.getElementById("15").innerHTML = finalCheck[4].char;
-                if(finalCheck[4].right){
+                if(finalCheck[4].state){
+                    document.getElementById("15").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[4].state){
                     document.getElementById("15").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -137,16 +146,19 @@ const updateWordle = () => {
             console.log(currentTry);
             if(finalCheck[0] !== null){
                 document.getElementById("21").innerHTML = finalCheck[0].char;
-                if(finalCheck[0].right){
+                if(finalCheck[0].state){
+                    document.getElementById("21").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[0].state){
                     document.getElementById("21").style.color = "rgb(241, 241, 103)";
                 }
-                
             } else {
                 document.getElementById("21").innerHTML = "_";
             }
             if(finalCheck[1] !== null){
                 document.getElementById("22").innerHTML = finalCheck[1].char;
-                if(finalCheck[1].right){
+                if(finalCheck[1].state){
+                    document.getElementById("22").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[1].state){
                     document.getElementById("22").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -154,7 +166,9 @@ const updateWordle = () => {
             }
             if(finalCheck[2] !== null){
                 document.getElementById("23").innerHTML = finalCheck[2].char;
-                if(finalCheck[2].right){
+                if(finalCheck[2].state){
+                    document.getElementById("23").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[2].state){
                     document.getElementById("23").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -162,7 +176,9 @@ const updateWordle = () => {
             }
             if(finalCheck[3] !== null){
                 document.getElementById("24").innerHTML = finalCheck[3].char;
-                if(finalCheck[3].right){
+                if(finalCheck[3].state){
+                    document.getElementById("24").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[3].state){
                     document.getElementById("24").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -170,7 +186,9 @@ const updateWordle = () => {
             }
             if(finalCheck[4] !== null){
                 document.getElementById("25").innerHTML = finalCheck[4].char;
-                if(finalCheck[4].right){
+                if(finalCheck[4].state){
+                    document.getElementById("25").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[4].state){
                     document.getElementById("25").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -182,16 +200,19 @@ const updateWordle = () => {
             console.log(currentTry);
             if(finalCheck[0] !== null){
                 document.getElementById("31").innerHTML = finalCheck[0].char;
-                if(finalCheck[0].right){
+                if(finalCheck[0].state){
+                    document.getElementById("31").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[0].state){
                     document.getElementById("31").style.color = "rgb(241, 241, 103)";
                 }
-                
             } else {
                 document.getElementById("31").innerHTML = "_";
             }
             if(finalCheck[1] !== null){
                 document.getElementById("32").innerHTML = finalCheck[1].char;
-                if(finalCheck[1].right){
+                if(finalCheck[1].state){
+                    document.getElementById("32").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[01].state){
                     document.getElementById("32").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -199,7 +220,9 @@ const updateWordle = () => {
             }
             if(finalCheck[2] !== null){
                 document.getElementById("33").innerHTML = finalCheck[2].char;
-                if(finalCheck[2].right){
+                if(finalCheck[2].state){
+                    document.getElementById("33").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[2].state){
                     document.getElementById("33").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -207,7 +230,9 @@ const updateWordle = () => {
             }
             if(finalCheck[3] !== null){
                 document.getElementById("34").innerHTML = finalCheck[3].char;
-                if(finalCheck[3].right){
+                if(finalCheck[3].state){
+                    document.getElementById("34").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[3].state){
                     document.getElementById("34").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -215,7 +240,9 @@ const updateWordle = () => {
             }
             if(finalCheck[4] !== null){
                 document.getElementById("35").innerHTML = finalCheck[4].char;
-                if(finalCheck[4].right){
+                if(finalCheck[4].state){
+                    document.getElementById("35").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[4].state){
                     document.getElementById("35").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -227,16 +254,19 @@ const updateWordle = () => {
             console.log(currentTry);
             if(finalCheck[0] !== null){
                 document.getElementById("41").innerHTML = finalCheck[0].char;
-                if(finalCheck[0].right){
+                if(finalCheck[0].state){
+                    document.getElementById("41").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[0].state){
                     document.getElementById("41").style.color = "rgb(241, 241, 103)";
                 }
-                
             } else {
                 document.getElementById("41").innerHTML = "_";
             }
             if(finalCheck[1] !== null){
                 document.getElementById("42").innerHTML = finalCheck[1].char;
-                if(finalCheck[1].right){
+                if(finalCheck[1].state){
+                    document.getElementById("42").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[1].state){
                     document.getElementById("42").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -244,7 +274,9 @@ const updateWordle = () => {
             }
             if(finalCheck[2] !== null){
                 document.getElementById("43").innerHTML = finalCheck[2].char;
-                if(finalCheck[2].right){
+                if(finalCheck[2].state){
+                    document.getElementById("43").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[2].state){
                     document.getElementById("43").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -252,7 +284,9 @@ const updateWordle = () => {
             }
             if(finalCheck[3] !== null){
                 document.getElementById("44").innerHTML = finalCheck[3].char;
-                if(finalCheck[3].right){
+                if(finalCheck[3].state){
+                    document.getElementById("4").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[3].state){
                     document.getElementById("44").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -260,7 +294,9 @@ const updateWordle = () => {
             }
             if(finalCheck[4] !== null){
                 document.getElementById("45").innerHTML = finalCheck[4].char;
-                if(finalCheck[4].right){
+                if(finalCheck[4].state){
+                    document.getElementById("45").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[4].state){
                     document.getElementById("45").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -272,16 +308,19 @@ const updateWordle = () => {
             console.log(currentTry);
             if(finalCheck[0] !== null){
                 document.getElementById("51").innerHTML = finalCheck[0].char;
-                if(finalCheck[0].right){
+                if(finalCheck[0].state){
+                    document.getElementById("51").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[0].state){
                     document.getElementById("51").style.color = "rgb(241, 241, 103)";
                 }
-                
             } else {
                 document.getElementById("51").innerHTML = "_";
             }
             if(finalCheck[1] !== null){
                 document.getElementById("52").innerHTML = finalCheck[1].char;
-                if(finalCheck[1].right){
+                if(finalCheck[1].state){
+                    document.getElementById("52").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[1].state){
                     document.getElementById("52").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -289,7 +328,9 @@ const updateWordle = () => {
             }
             if(finalCheck[2] !== null){
                 document.getElementById("53").innerHTML = finalCheck[2].char;
-                if(finalCheck[2].right){
+                if(finalCheck[2].state){
+                    document.getElementById("53").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[2].state){
                     document.getElementById("53").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -297,7 +338,9 @@ const updateWordle = () => {
             }
             if(finalCheck[3] !== null){
                 document.getElementById("54").innerHTML = finalCheck[3].char;
-                if(finalCheck[3].right){
+                if(finalCheck[3].state){
+                    document.getElementById("54").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[3].state){
                     document.getElementById("54").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -305,7 +348,9 @@ const updateWordle = () => {
             }
             if(finalCheck[4] !== null){
                 document.getElementById("55").innerHTML = finalCheck[4].char;
-                if(finalCheck[4].right){
+                if(finalCheck[4].state){
+                    document.getElementById("55").style.color = "rgb(0, 209, 0)";
+                } else if(!finalCheck[4].state){
                     document.getElementById("55").style.color = "rgb(241, 241, 103)";
                 }
             } else {
@@ -314,7 +359,6 @@ const updateWordle = () => {
             currentTry = 5;
             break;
             case 5:
-                console.log(currentTry);
                 alert("Usaste todos tus intentos!");
                 break;
     }
