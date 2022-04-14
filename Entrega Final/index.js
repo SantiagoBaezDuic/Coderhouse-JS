@@ -3,7 +3,7 @@
 
 const letterContainersCollection = ["11", "12", "13", "14", "15", "21", "22", "23", "24", "25", "31", "32", "33", "34", "35", "41", "42", "43", "44", "45", "51", "52", "53", "54", "55"]
 
-const wordCollection = ["queso", "cubos", "palos", "cenar", "coder", "jugos"];
+const wordCollection = ["queso", "cubos", "palos", "cenar", "coder", "jugos", "cobra"];
 
 const notUsedForNow = ["pizza", "apaga", "arder", "bayas", "cazar"];
 
@@ -33,16 +33,21 @@ const switchDarkMode = () => {
         document.body.style.backgroundColor = "white";
         document.getElementById("title").style.color = "black";
         document.getElementById("checkboxLabel").style.color = "black";
+        document.getElementById("debugLabel").style.color = "black";
+        document.getElementById("debugDiv").style.color = "black";
         letterContainersCollection.map((obj) => {
-            document.getElementById(obj).style.color = "black";
+            document.getElementById(obj).style.backgroundColor = "grey";
+            
         })
         darkMode = false;
     } else {
         document.body.style.backgroundColor = "rgb(41, 40, 40)";
         document.getElementById("title").style.color = "white";
         document.getElementById("checkboxLabel").style.color = "white";
+        document.getElementById("debugDiv").style.color = "white";
         letterContainersCollection.map((obj) => {
             document.getElementById(obj).style.color = "white";
+            document.getElementById(obj).style.backgroundColor = "rgb(34, 34, 34)";
         })
         darkMode = true;
     }
@@ -126,10 +131,9 @@ const compareWord = () => {
         if(word.search(char) !== -1){
             foundInWord.push({char: char, pos: input.search(char)})
         } else {
-            foundInWord.push({char: null, pos: null});
+            foundInWord.push({char: char, pos: null});
             if(notInWordCollection.indexOf(char) === -1){
                 notInWordCollection.push(char);
-                console.log(notInWordCollection);
             }
         }
     })
@@ -138,7 +142,7 @@ const compareWord = () => {
 
       foundInWord.map((obj) => {
 
-      if(obj.char !== null){
+      if(obj.pos !== null){
           wordArray.map((correctChar) => {
              if(obj.char === correctChar.char){
                  if(obj.pos === correctChar.pos){
@@ -149,13 +153,13 @@ const compareWord = () => {
              }
           })
       } else {
-          finalCheck.push(null);
+          finalCheck.push({char: obj.char, pos: null, state: false});
       }
       })
 
-    //   console.log(wordArray);
-    //   console.log(foundInWord);
-    //   console.log(finalCheck);
+    //    console.log(wordArray);
+    //    console.log(foundInWord);
+    //    console.log(finalCheck);
 
     }
 
@@ -163,59 +167,59 @@ const compareWord = () => {
 //Modificación del DOM para reflejar visualmente aciertos/fallos
 
 const paintWordle = (row) => {
-    if(finalCheck[0] !== null){
+    if(finalCheck[0].pos !== null){
         document.getElementById(`${row}1`).innerHTML = finalCheck[0].char;
         if(finalCheck[0].state){
-            document.getElementById(`${row}1`).style.color = "rgb(0, 209, 0)";
+            document.getElementById(`${row}1`).style.backgroundColor = "rgb(106,170,100)";
         } else if(!finalCheck[0].state){
-            document.getElementById(`${row}1`).style.color = "rgb(241, 241, 103)";
+            document.getElementById(`${row}1`).style.backgroundColor = "rgb(201,180,88)";
         }
     } else {
-        document.getElementById(`${row}1`).innerHTML = "_";
+        document.getElementById(`${row}1`).innerHTML = finalCheck[0].char;
         document.getElementById(`${row}1`).style.color = "grey";
     }
-    if(finalCheck[1] !== null){
+    if(finalCheck[1].pos !== null){
         document.getElementById(`${row}2`).innerHTML = finalCheck[1].char;
         if(finalCheck[1].state){
-            document.getElementById(`${row}2`).style.color = "rgb(0, 209, 0)";
+            document.getElementById(`${row}2`).style.backgroundColor = "rgb(106,170,100)";
         } else if(!finalCheck[1].state){
-            document.getElementById(`${row}2`).style.color = "rgb(241, 241, 103)";
+            document.getElementById(`${row}2`).style.backgroundColor = "rgb(201,180,88)";
         }
     } else {
-        document.getElementById(`${row}2`).innerHTML = "_";
+        document.getElementById(`${row}2`).innerHTML = finalCheck[1].char;
         document.getElementById(`${row}2`).style.color = "grey";
     }
-    if(finalCheck[2] !== null){
+    if(finalCheck[2].pos !== null){
         document.getElementById(`${row}3`).innerHTML = finalCheck[2].char;
         if(finalCheck[2].state){
-            document.getElementById(`${row}3`).style.color = "rgb(0, 209, 0)";
+            document.getElementById(`${row}3`).style.backgroundColor = "rgb(106,170,100)";
         } else if(!finalCheck[2].state){
-            document.getElementById(`${row}3`).style.color = "rgb(241, 241, 103)";
+            document.getElementById(`${row}3`).style.backgroundColor = "rgb(201,180,88)";
         }
     } else {
-        document.getElementById(`${row}3`).innerHTML = "_";
+        document.getElementById(`${row}3`).innerHTML = finalCheck[2].char;
         document.getElementById(`${row}3`).style.color = "grey";
     }
-    if(finalCheck[3] !== null){
+    if(finalCheck[3].pos !== null){
         document.getElementById(`${row}4`).innerHTML = finalCheck[3].char;
         if(finalCheck[3].state){
-            document.getElementById(`${row}4`).style.color = "rgb(0, 209, 0)";
+            document.getElementById(`${row}4`).style.backgroundColor = "rgb(106,170,100)";
         } else if(!finalCheck[3].state){
-            document.getElementById(`${row}4`).style.color = "rgb(241, 241, 103)";
+            document.getElementById(`${row}4`).style.backgroundColor = "rgb(201,180,88)";
         }
     } else {
-        document.getElementById(`${row}4`).innerHTML = "_";
+        document.getElementById(`${row}4`).innerHTML = finalCheck[3].char;
         document.getElementById(`${row}4`).style.color = "grey";
     }
-    if(finalCheck[4] !== null){
+    if(finalCheck[4].pos !== null){
         document.getElementById(`${row}5`).innerHTML = finalCheck[4].char;
         if(finalCheck[4].state){
-            document.getElementById(`${row}5`).style.color = "rgb(0, 209, 0)";
+            document.getElementById(`${row}5`).style.backgroundColor = "rgb(106,170,100)";
         } else if(!finalCheck[4].state){
-            document.getElementById(`${row}5`).style.color = "rgb(241, 241, 103)";
+            document.getElementById(`${row}5`).style.backgroundColor = "rgb(201,180,88)";
         }
     } else {
-        document.getElementById(`${row}5`).innerHTML = "_";
+        document.getElementById(`${row}5`).innerHTML = finalCheck[4].char;
         document.getElementById(`${row}5`).style.color = "grey";
     }
 
