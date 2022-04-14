@@ -13,49 +13,53 @@
 </head>
 <body>
     <script src="./index.js"></script>
-    <h1 class="title">Definitely not WORDLE</h1>
+    <div class="darkmode-container">
+        <input onchange="switchDarkMode()" id="darkmode" type="checkbox" checked/>
+        <label id="checkboxLabel" class="checkbox-label" for="darkmode">Dark Mode</label>
+    </div>
+    <h1 id="title" class="title">Definitely not WORDLE</h1>
 
     <div class="wordle-container">
-    <div class="indivual-letter-container" id="first">
-        <div id="11">_</div>
-        <div id="12">_</div>
-        <div id="13">_</div>
-        <div id="14">_</div>
-        <div id="15">_</div>
-    </div>
-    <div class="indivual-letter-container" id="second">
-        <div id="21"></div>
-        <div id="22"></div>
-        <div id="23"></div>
-        <div id="24"></div>
-        <div id="25"></div>
-    </div>
-    <div class="indivual-letter-container" id="third">
-        <div id="31"></div>
-        <div id="32"></div>
-        <div id="33"></div>
-        <div id="34"></div>
-        <div id="35"></div>
-    </div>
-    <div class="indivual-letter-container" id="fourth">
-        <div id="41"></div>
-        <div id="42"></div>
-        <div id="43"></div>
-        <div id="44"></div>
-        <div id="45"></div>
-    </div>
-    <div class="indivual-letter-container" id="fifth">
-        <div id="51"></div>
-        <div id="52"></div>
-        <div id="53"></div>
-        <div id="54"></div>
-        <div id="55"></div>
-    </div>
+        <div id="first" class="indivual-letter-container">
+            <div id="11">_</div>
+            <div id="12">_</div>
+            <div id="13">_</div>
+            <div id="14">_</div>
+            <div id="15">_</div>
+        </div>
+        <div id="second" class="indivual-letter-container">
+            <div id="21"></div>
+            <div id="22"></div>
+            <div id="23"></div>
+            <div id="24"></div>
+            <div id="25"></div>
+        </div>
+        <div id="third" class="indivual-letter-container">
+            <div id="31"></div>
+            <div id="32"></div>
+            <div id="33"></div>
+            <div id="34"></div>
+            <div id="35"></div>
+        </div>
+        <div id="fourth" class="indivual-letter-container">
+            <div id="41"></div>
+            <div id="42"></div>
+            <div id="43"></div>
+            <div id="44"></div>
+            <div id="45"></div>
+        </div>
+        <div id="fifth" class="indivual-letter-container">
+            <div id="51"></div>
+            <div id="52"></div>
+            <div id="53"></div>
+            <div id="54"></div>
+            <div id="55"></div>
+        </div>
     </div>
     
     <div class="input-container">
-    <input onkeyup="handleEnter(event)" placeholder="Input a 5 letter word" type="text" name="" id="textInput">
-    <button id="btn" onclick="Wordle()">SUBMIT</button>
-    </div>      
+        <input onkeyup="handleEnter(event)" placeholder="Input a 5 letter word" type="text" name="" id="textInput">
+        <button id="btn" onclick="Wordle()">SUBMIT</button>
+    </div>   
 </body>
 </html>

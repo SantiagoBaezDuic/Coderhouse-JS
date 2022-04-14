@@ -2,6 +2,15 @@ body{
     background-color: rgb(41, 40, 40);
 }
 
+.darkmode-container{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.checkbox-label{
+    color: white;
+}
+
 .title{
     color: white;
     text-align: center;
@@ -44,4 +53,8 @@ body{
     width: 10%;
     height: 32px;
     justify-content: space-between;
+}
+
+.word-info{
+    border: 1px solid white;
 }

@@ -1,3 +1,50 @@
+///////////////////////////////////////////////////////////////////////
+//Colecciones
+
+const letterContainersCollection = ["11", "12", "13", "14", "15", "21", "22", "23", "24", "25", "31", "32", "33", "34", "35", "41", "42", "43", "44", "45", "51", "52", "53", "54", "55"]
+
+const wordCollection = ["queso", "cubos", "pizza", "apaga", "arder", "bayas", "cazar"];
+
+let word = "queso";
+
+///////////////////////////////////////////////////////////////////////
+//Elección de la palabra al azar
+
+const chooseWord = () => {
+    min = Math.ceil(0);
+    max = Math.floor(wordCollection.length);
+    let randomNum = Math.floor(Math.random() * (max - min) + min);
+    word = wordCollection[randomNum];
+}
+
+chooseWord();
+
+///////////////////////////////////////////////////////////////////////
+//Dark Mode
+
+let darkMode = true;
+
+const switchDarkMode = () => {
+    if(darkMode){
+        document.body.style.backgroundColor = "white";
+        document.getElementById("title").style.color = "black";
+        document.getElementById("checkboxLabel").style.color = "black";
+        letterContainersCollection.map((obj) => {
+            document.getElementById(obj).style.color = "black";
+        })
+        darkMode = false;
+    } else {
+        document.body.style.backgroundColor = "rgb(41, 40, 40)";
+        document.getElementById("title").style.color = "white";
+        document.getElementById("checkboxLabel").style.color = "white";
+        letterContainersCollection.map((obj) => {
+            document.getElementById(obj).style.color = "white";
+        })
+        darkMode = true;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////
 //Clickear el botón apretando enter
 
 let handleEnter = (e) => {
@@ -8,8 +55,6 @@ let handleEnter = (e) => {
 
 ///////////////////////////////////////////////////////////////////////
 //Desarmado de la palabra para tenerla en un array, se separa en objetos que contienen el caracter y el index en el que se encuentra.
-
-let word = "queso";
 
 let wordArray = [];
 
