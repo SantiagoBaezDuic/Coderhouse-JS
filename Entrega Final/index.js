@@ -3,7 +3,7 @@
 
 const letterContainersCollection = ["11", "12", "13", "14", "15", "21", "22", "23", "24", "25", "31", "32", "33", "34", "35", "41", "42", "43", "44", "45", "51", "52", "53", "54", "55"]
 
-const wordCollection = ["queso", "cubos", "opalo", "cenar", "coder", "jugos"];
+const wordCollection = ["queso", "cubos", "palos", "cenar", "coder", "jugos"];
 
 const notUsedForNow = ["pizza", "apaga", "arder", "bayas", "cazar"];
 
@@ -90,21 +90,19 @@ disarmWord();
 ///////////////////////////////////////////////////////////////////////
 //Chequeo del cumplimiento de las reglas para la palabra ingresada (5 letras, sin espacios)
 
-let checkpoint = false;
-
 const checkWord = () => {
     let input = "";
     input = document.getElementById("textInput").value;
-    if(input === word){
-        alert("Adivinaste la palabra!")
-    } else if(input.length === 5 && input.search(" ") === -1){
-        checkpoint = true;
-    } else if(input === ""){
+    input = input.toLowerCase();
+
+    if(input === ""){
         alert("Ingrese una palabra.")
+    } else if(input.search(" ") !== -1){
+        alert("No ingrese espacios.")
     } else if(input.length !== 5){
-        alert("La palabra debe ser de cinco letras.");
-    } else if(input.search(" ")){
-        alert("No ingrese espacios.");
+        alert("Ingrese una palabra de 5 letras.")
+    } else {
+        return true;
     }
 };
 
@@ -116,38 +114,50 @@ finalCheck = [];
 const compareWord = () => {
     let input = "";
     input = document.getElementById("textInput").value;
+    input = input.toLowerCase();
 
     let foundInWord = [];
 
     let splitArray = input.split(``);
 
+    //Detectar que letras se encuentran en ambas palabras
+
     splitArray.map((char) => {
         if(word.search(char) !== -1){
             foundInWord.push({char: char, pos: input.search(char)})
         } else {
-            foundInWord.push(null);
+            foundInWord.push({char: null, pos: null});
+            if(notInWordCollection.indexOf(char) === -1){
+                notInWordCollection.push(char);
+                console.log(notInWordCollection);
+            }
         }
     })
 
-     foundInWord.map((obj) => {
-        if(obj !== null){
-            wordArray.map((correctChar) => {
-                if(obj.char === correctChar.char){
-                    if(obj.pos === correctChar.pos){
-                        finalCheck.push({char: obj.char, pos: correctChar.pos, state: true})
-                    } else {
-                        finalCheck.push({char: obj.char, pos: correctChar.pos, state: false})
-                    }
-                }
-            })
-        } else {
-            finalCheck.push(null);
-        }
-     })
-     console.log(wordArray);
-     console.log(foundInWord);
-     console.log(finalCheck);
-}
+    //Saber si la posición de la letra es la correcta
+
+      foundInWord.map((obj) => {
+
+      if(obj.char !== null){
+          wordArray.map((correctChar) => {
+             if(obj.char === correctChar.char){
+                 if(obj.pos === correctChar.pos){
+                     finalCheck.push({char: obj.char, pos: correctChar.pos, state: true})
+                 } else {
+                     finalCheck.push({char: obj.char, pos: correctChar.pos, state: false})
+                 }
+             }
+          })
+      } else {
+          finalCheck.push(null);
+      }
+      })
+
+    //   console.log(wordArray);
+    //   console.log(foundInWord);
+    //   console.log(finalCheck);
+
+    }
 
 ///////////////////////////////////////////////////////////////////////
 //Modificación del DOM para reflejar visualmente aciertos/fallos
@@ -208,6 +218,12 @@ const paintWordle = (row) => {
         document.getElementById(`${row}5`).innerHTML = "_";
         document.getElementById(`${row}5`).style.color = "grey";
     }
+
+    notInWordCollection.map((obj) => {
+        document.getElementById(`${obj}`).style.backgroundColor = "rgb(34, 34, 34)";
+        document.getElementById(`${obj}`).style.color = "rgb(179, 179, 179)";
+    })
+
     currentTry = row;
 }
 
@@ -240,9 +256,17 @@ const updateWordle = () => {
 // Función integral
 
 const Wordle = () => {
-    checkWord();
-    compareWord();
-    updateWordle();
-    finalCheck = [];
-    document.getElementById("textInput").value = "";
+    let input = "";
+    input = document.getElementById("textInput").value;
+    input = input.toLowerCase();
+
+    if(checkWord()){
+        compareWord();
+        updateWordle();
+        if(input === word){
+            alert("Adivinaste la palabra!");
+        }
+        finalCheck = [];
+        document.getElementById("textInput").value = "";
+    }
 }
