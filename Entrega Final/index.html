@@ -14,8 +14,14 @@
 <body>
     <script src="./index.js"></script>
     <div class="darkmode-container">
-        <input onchange="switchDarkMode()" id="darkmode" type="checkbox" checked/>
-        <label id="checkboxLabel" class="checkbox-label" for="darkmode">Dark Mode</label>
+        <div>
+            <input onchange="switchDarkMode()" id="darkmode" type="checkbox" checked/>
+            <label id="checkboxLabel" class="checkbox-label" for="darkmode">Dark Mode</label>
+        </div>
+        <div>
+            <input onchange="switchDebug()" id="debug" type="checkbox"/>
+            <label id="debugLabel" class="checkbox-label" for="debug">Debug Mode</label>
+        </div>
     </div>
     <h1 id="title" class="title">Definitely not WORDLE</h1>
 
@@ -60,6 +66,7 @@
     <div class="input-container">
         <input onkeyup="handleEnter(event)" placeholder="Input a 5 letter word" type="text" name="" id="textInput">
         <button id="btn" onclick="Wordle()">SUBMIT</button>
-    </div>   
+    </div>
+    <div class="debug-div" id="debugDiv"></div>
 </body>
 </html>

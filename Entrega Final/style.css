@@ -4,7 +4,14 @@ body{
 
 .darkmode-container{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+}
+
+.debug-div{
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .checkbox-label{
